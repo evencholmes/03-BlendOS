@@ -1,128 +1,27 @@
-# BlendOS v5.0 — Blender Skill Tracker
-## Capacitor Android Build Guide
+03 BlendOS - An unofficial blender skill tracker [for 4.5lts i guess]
 
----
+I am learning Blender.
 
-### 📦 Step 1 — Install plugins
+I am also, apparently, incapable of just... learning Blender. I build a whole app about it first. [well i was following a mechatrnic couse and we were also learning about it , so i got tunnel vision and look where it got me]
 
-```bash
-npm install @capacitor/core@6 @capacitor/android@6 @capacitor/cli@6
-npm install @capacitor/filesystem@6 @capacitor/share@6 @capacitor/app@6 --legacy-peer-deps
-```
+Yes. I am aware.
 
-> Must use `--legacy-peer-deps` for filesystem/share/app or you'll get peer conflict errors.
+BlendOS started because Blender is enormous and I kept losing track of what I knew, what I didn't, and what I didn't even know I didn't know. So I spent one and a half days building a skill tracker. One and a half days. For an app. To help me learn a software. That I haven't learned yet. This is fine.
 
----
+100+ skills across 11 disciplines. A 🎯 Aim system that lights up the path toward any goal you set. A shortcuts trove because nobody has those memorized (nobody). A progress heatmap. Streak tracking. The whole thing.
 
-### 🤖 Step 2 — Add Android & sync
+Everything stays on your device no account, no cloud, no server. Export a .blendos backup regularly. I mean it.
 
-```bash
-npx cap add android     # first time only
-npx cap sync android
-```
+About the app icon it's AI generated. I know. I KNOW. But here's the thing: I'm still learning Blender. That's literally why this app exists. Making a proper rendered icon right now is a bit of a chicken-and-egg situation. So consider this a public commitment the moment I'm good enough to make something I'm proud of, I'm rendering a real icon and replacing it. You can hold me to that.
 
----
+I'm one person, intern salary, ~$30 a month. Play Store costs $25 just to list. So no, it's not there. It's here, as an APK, shared freely.
 
-### 🔧 Step 3 — Gradle fixes (after first `cap add android`)
+If BlendOS is useful to you a dollar on Patreon would genuinely mean a lot. Only if you want to, only if you can.
 
-These files are pre-configured in this package but double-check after `cap add android`
-regenerates them:
+Can't spare one? That's completely fine. Just tell another Blender learner it exists. That costs nothing and means everything.
 
-**`android/build.gradle`** — Gradle plugin version:
-```groovy
-classpath 'com.android.tools.build:gradle:8.3.0'
-```
+Built with obsession. Free by choice.
 
-**`android/gradle/wrapper/gradle-wrapper.properties`** — Gradle wrapper:
-```
-distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
-```
-
-**`android/gradle.properties`** — Add these two lines:
-```
-android.suppressUnsupportedCompileSdk=34
-android.defaults.buildfeatures.buildconfig=true
-```
-
-**`android/app/src/main/AndroidManifest.xml`** — activity tag needs:
-```xml
-android:windowSoftInputMode="adjustResize"
-```
-
-**`android/app/src/main/res/values/styles.xml`** — Inside `AppTheme.NoActionBar`:
-```xml
-<item name="android:statusBarColor">#1d1d1d</item>
-<item name="android:navigationBarColor">#1d1d1d</item>
-<item name="android:windowDrawsSystemBarBackgrounds">true</item>
-<item name="android:windowLightStatusBar">false</item>
-<item name="android:windowLightNavigationBar">false</item>
-```
-
----
-
-### 🏗️ Step 4 — Build APK
-
-Open Android Studio:
-```bash
-npx cap open android
-```
-
-Then: **Build → Generate Signed Bundle / APK**
-
-For every new build after code changes:
-```bash
-npx cap sync android
-```
-Then in Android Studio: **Build → Clean Project → Build → Assemble**
-
----
-
-### 🔁 Every new build checklist
-
-```bash
-npm install @capacitor/core@6 @capacitor/android@6 @capacitor/cli@6
-npm install @capacitor/filesystem@6 @capacitor/share@6 @capacitor/app@6 --legacy-peer-deps
-npx cap sync android
-```
-Then Clean → Assemble in Android Studio. 💪
-
----
-
-### 📱 Features implemented for Capacitor
-
-- ✅ **Export** — uses Filesystem + Share plugin (a.click() is blocked in WebView)
-- ✅ **Back button** — modal → search → go home → minimize
-- ✅ **Swipe navigation** — uses `function()` not arrow functions (older WebView safe)
-- ✅ **Status/nav bar** — matches BlendOS dark theme `#1d1d1d`
-- ✅ **Dual storage** — localStorage + IndexedDB (survives all but uninstall)
-- ✅ **Keyboard** — adjustResize so keyboard doesn't cover inputs
-- ✅ **Offline** — service worker caches all assets
-
----
-
-### 📂 File structure
-
-```
-blendos-capacitor/
-├── www/                    ← Capacitor reads this (webDir)
-│   ├── index.html          ← Full BlendOS v5 app
-│   ├── manifest.json       ← PWA manifest
-│   ├── sw.js               ← Service worker
-│   ├── icon-192.png
-│   └── icon-512.png
-├── android/
-│   ├── build.gradle        ← Gradle 8.3.0
-│   ├── gradle.properties   ← suppressUnsupportedCompileSdk etc
-│   ├── gradle/wrapper/     ← Gradle 8.7
-│   └── app/src/main/
-│       ├── AndroidManifest.xml
-│       └── res/
-│           ├── mipmap-*/   ← All icon densities (48→192px)
-│           └── values/styles.xml
-├── capacitor.config.json   ← appId: com.jibunshidai.blendos
-├── package.json
-└── README.md               ← You are here
-```
 
 ---
 
