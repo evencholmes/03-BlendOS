@@ -22,7 +22,7 @@ Can't spare one? That's completely fine. Just tell another Blender learner it ex
 
 Built with obsession. Free by choice.
 
-
+Release - https://github.com/evencholmes/03-BlendOS/releases/tag/Apk
 ---
 
 ### 👥 Credits
