@@ -1,0 +1,13 @@
+{
+  "appId": "com.jibunshidai.blendos",
+  "appName": "BlendOS",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
